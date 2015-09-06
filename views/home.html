@@ -1,0 +1,92 @@
+<div class="header">
+  <span>
+    Search By Category: <select ng-model="category">
+                  <option value=""></option>
+                  <option value="awesome">awesome</option>
+                  <option value="cold">cold</option>
+                  <option value="dry">dry</option>
+                  <option value="summer">summer</option>
+                  <option value="lucid">lucid</option>
+                  <option value="warm">warm</option>
+                  <option value="winter">winter</option>
+                  <option value="spring">spring</option>
+              </select>
+  </span>
+  <span>
+    Search by name: <input type="text" ng-model="search">
+  </span>
+  <span class="checkout">
+    <a href="/#/show">Checkout</a>
+    |
+     Bag :
+    <ng-pluralize count="shopingcard.length"
+                   when="{'0': 'Empty!',
+                          'one': '1',
+                          'other': '{}'}">
+    </ng-pluralize>
+  </span>
+</div>
+
+<table>
+    <tr class="header">
+      <td>
+        Tea
+      </td>
+      <td>
+        Information
+      </td>
+      <td class="last">
+        Sort by Price:
+        <select ng-model="price_order">
+          <option value=""></option>
+          <option value="-price">highest</option>
+          <option value="price">lowest</option>
+        </select>
+      </td>
+    </tr>
+  <tr ng-repeat="tea in teas | filter : { 'name' : search } | filter : category  | orderBy : price_order">
+    <td>
+      <img ng-src="{{tea.imageUrl}}" alt="image" />
+    </td>
+    <td>
+      <h1>{{tea.name}}</h1>
+      <p>
+        <span class="bold">Price:</span> {{tea.price/100 | currency }}
+      </p>
+      <p>
+        <span class="bold">Caffeine Scale:</span> {{tea.caffeineScale}}
+      </p>
+      <p>
+        <span class="bold">Ingredients:</span> {{tea.ingredients}}
+      </p>
+      <p>
+        <span class="bold">Rating:</span> {{tea.rating}}
+      </p>
+      <p>
+        <span class="bold">In Stock?</span> {{tea.inStock ? "yes" : "no"}}
+      </p>
+      <p>
+        <span class="bold">Category:</span>
+        <ul>
+          <li ng-repeat="category in tea.categories">{{category}}</li>
+        </ul>
+      </p>
+    </td>
+    <td class="last">
+      <h1>
+        Quantity:
+        <select ng-model="quantity" ng-init="quantity='0'">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+        <input type="button" value="Add to Bag" ng-click="update_card(tea._id, quantity)">
+      </h1>
+    </td>
+  </tr>
+</table>
