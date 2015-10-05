@@ -1,6 +1,6 @@
 {
-  "name": "g8-teaApp",
-  "root": "./",
+  "name": "tea-crisswear",
+  "root": "y",
   "clean_urls": true,
   "error_page": "error.html"
 }

@@ -1,92 +1,73 @@
-<div class="header">
-  <span>
-    Search By Category: <select ng-model="category">
-                  <option value=""></option>
-                  <option value="awesome">awesome</option>
-                  <option value="cold">cold</option>
-                  <option value="dry">dry</option>
-                  <option value="summer">summer</option>
-                  <option value="lucid">lucid</option>
-                  <option value="warm">warm</option>
-                  <option value="winter">winter</option>
-                  <option value="spring">spring</option>
-              </select>
-  </span>
-  <span>
-    Search by name: <input type="text" ng-model="search">
-  </span>
-  <span class="checkout">
-    <a href="/#/show">Checkout</a>
-    |
-     Bag :
-    <ng-pluralize count="shopingcard.length"
-                   when="{'0': 'Empty!',
-                          'one': '1',
-                          'other': '{}'}">
-    </ng-pluralize>
-  </span>
+<div class="header clearfix">
+<span class="checkout">
+  <a href="/#/show">
+    <i class="fa fa-shopping-cart"></i>
+    My Card</a> :
+  <ng-pluralize count="shopingcard.length"
+                 when="{'0': 'Empty!',
+                        'one': '1 item',
+                        'other': '{} items'}">
+  </ng-pluralize>
+</span>
+<span class="nav">
+  <input id="cold" type="radio" ng-model="category" value="cold">
+  <label for="cold">Cold</label>
+  <input id="awesome" type="radio" ng-model="category" value="awesome">
+  <label for="awesome">Awesome</label>
+  <input id="dry" type="radio" ng-model="category" value="dry">
+  <label for="dry">Dry</label>
+  <input id="summer" type="radio" ng-model="category" value="summer">
+  <label for="summer">Summer</label>
+  <input id="lucid" type="radio" ng-model="category" value="lucid">
+  <label for="lucid">Lucid</label>
+  <input id="warm" type="radio" ng-model="category" value="warm">
+  <label for="warm">Warm</label>
+  <input id="winter" type="radio" ng-model="category" value="winter">
+  <label for="winter">Winter</label>
+  <input id="spring" type="radio" ng-model="category" value="spring">
+  <label for"spring">Spring</label>
+</span>
+<span class="search">
+  <input type="text" ng-model="search" placeholder="Search by name">
+  <i class="fa fa-search"></i>
+</span>
+<!-- <form class="price">Sort by
+  <input type="radio" id="highest" value="-price" ng-model="price_order">
+  <label for="highest">Highest</label>
+  <input type="radio" id="lowest" value="price" ng-model="price_order">
+  <label for="lowest">Lowest</label>
+  price
+</form> -->
 </div>
+  <div class="bar">
+    <img src="img/teaing.jpg" alt="" height="200"/>
+  </div>
 
-<table>
-    <tr class="header">
-      <td>
-        Tea
-      </td>
-      <td>
-        Information
-      </td>
-      <td class="last">
-        Sort by Price:
-        <select ng-model="price_order">
-          <option value=""></option>
-          <option value="-price">highest</option>
-          <option value="price">lowest</option>
-        </select>
-      </td>
-    </tr>
-  <tr ng-repeat="tea in teas | filter : { 'name' : search } | filter : category  | orderBy : price_order">
-    <td>
-      <img ng-src="{{tea.imageUrl}}" alt="image" />
-    </td>
-    <td>
+  <div class="price">
+      Sort by <select ng-model="price_order" ng-init="price_order='-price'">
+        <option value="-price"><i class="fa fa-sort-desc"></i> Highest</option>
+        <option value="price"> Lowest </option>
+      </select>  price
+  </div>
+  <section class="clearfix " ng-repeat="tea in teas | filter : { 'name' : search } | filter : category  | orderBy : price_order">
       <h1>{{tea.name}}</h1>
-      <p>
-        <span class="bold">Price:</span> {{tea.price/100 | currency }}
-      </p>
-      <p>
-        <span class="bold">Caffeine Scale:</span> {{tea.caffeineScale}}
-      </p>
-      <p>
-        <span class="bold">Ingredients:</span> {{tea.ingredients}}
-      </p>
-      <p>
-        <span class="bold">Rating:</span> {{tea.rating}}
-      </p>
-      <p>
-        <span class="bold">In Stock?</span> {{tea.inStock ? "yes" : "no"}}
-      </p>
-      <p>
-        <span class="bold">Category:</span>
+      <img ng-src="{{tea.imageUrl}}" alt="image" />
+      <div class="inside-box">
+        <p><strong>Price:</strong> {{tea.price/100 | currency }}</p>
+        <p><strong>Ingredients:</strong>  {{tea.ingredients}}</p>
+        <p><strong>Caffeine Scale:</strong> {{tea.caffeineScale}}</p>
+        <p><strong>Category:</strong>
         <ul>
           <li ng-repeat="category in tea.categories">{{category}}</li>
         </ul>
-      </p>
-    </td>
-    <td class="last">
-      <h1>
-        Quantity:
-        <select ng-model="quantity" ng-init="quantity='0'">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
-        <input type="button" value="Add to Bag" ng-click="update_card(tea._id, quantity)">
-      </h1>
-    </td>
-  </tr>
-</table>
+      </div>
+      <footer>
+        <span ng-init="quantity=0" class="middle" ng-model="quantity">
+          <i class="fa fa-plus" ng-click="show?quantity=quantity+1:null"></i>
+          {{quantity}}
+          <i class="fa fa-minus" ng-click="show?quantity=quantity-1:null"></i>
+        </span>
+        <input ng-show="show" type="button" value="Add to Bag" ng-click="update_card(tea._id, quantity);show=!show;">
+        <input ng-show="!show" type="button" value="Added" class="orange">
+      </footer>
+  </section>

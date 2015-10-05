@@ -4,102 +4,121 @@
   box-sizing: border-box;
 }
 
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
 body {
-  font-family: 'Lato', sans-serif;
-  padding: 2%;
+  font-family: 'Roboto', sans-serif;
+  padding: 4vw 2vw;
+  color: #52662B;
+}
+
+/* select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  background: white;
+  border: none;
+  display: inline-block;
+  font-size: 1em;
+  width: auto;
+} */
+
+.price {
+    margin-left: 80vw;
+    margin-bottom: 2vw;
 }
 
 h2 {
-  background: #FF7000;
   color: white;
   text-align: center;
 }
 
-span.bold {
-  font-weight: 700;
+header h1 {
+  color: #DD4100;
 }
 
-header h1 {
-  color: #FF7000;
-  text-align: center;
-  font-style: italic;
+.header {
+  border-top: 1px solid #52662B;
+  padding-top: 2vw;
+  margin-bottom: 2vw;
 }
+
+.bar img {
+  display: inline-block;
+  width: 95vw;
+  height: auto;
+  margin-bottom: 2vw;
+}
+
+header img {
+  float: left;
+  margin-top: -35px;
+  margin-right: 10px;
+}
+
+body < header {
+  width: 20vw;
+  float: left;
+  padding-top: 10px;
+}
+
  a {
    text-decoration: none;
    color: #000;
  }
 
-nav {
-  height: 50px;
-  background: #E5D4C5;
-  margin-bottom: 20px;
+input[type=radio]{
+  display: none;
 }
 
-nav a {
-  padding: 15px;
-  display: inline-block;
-  width: 15%;
+.nav input[type="radio"] + label{
   text-transform: uppercase;
   text-align: center;
-}
-
-nav a:hover {
-  background: #FF7000;
-  color: white;
-}
-
-table{
-  width: 100%;
-  margin-top: 3%;
-  border-collapse: collapse;
-  border: 1px solid black;
-  clear: both;
- }
-
- table td{
-   border: 1px solid black;
-   width: 30%;
-   padding: 10px;
- }
-
-
-tr.header{
-  font-size: 1.2em;
-  font-weight: 700;
-  border: 1px solid black;
-}
-span.left {
-  float: left;
-  margin-bottom: 20px;
-}
-span.right {
-  float: right;
-  margin-bottom: 20px;
-}
-
-div.header {
-  height: 40px;
-}
-div.header span {
+  font-weight: bold;
   display: inline-block;
-  margin: 10px 160px 20px 0;
+  margin-right: 2vw;
+  height: 4vh;
+  cursor: pointer;
+  transition: all 0.5s ease;
 }
+.nav input[type="radio"] + label:hover,
+.nav input[type="radio"]:checked + label {
+  border-bottom:5px solid #889F3F;
+}
+
+
 span.checkout {
+  position: absolute;
+  top: 7vw;
+  right: 2vw;
   text-align: center;
-  background: #658F98;
   height: 30px;
   width: 200px;
   border-radius: 5px 5px;
   padding: 3px;
-  color: #E5D4C5;
 }
-span.checkout a {
-  color: #E5D4C5;
+
+i {
+  color: #DD4100;
+  padding: 0 10px;
 }
 
 input[type='button'] {
+   outline: none;
    border: none;
-   background: #FF7000;
+   background: #8ea936;
    color: white;
    width: 150px;
    height: 30px;
@@ -108,8 +127,103 @@ input[type='button'] {
 }
 
 input[type='text']{
+  height: 25px;
+  outline: none;
+  border: none;
+}
+.search {
+  position: relative;
+  bottom: 10px;
+  margin-left: 24.15vw;
+  border: 1px solid #52662B;
+  display: inline-block;
   height: 30px;
-  width: 300px;
-  border-radius: 5px 5px;
-  margin: 5px;
+  width: 25vw;
+  padding-left: 5px;
+}
+
+.search i {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding-top: 5px;
+  background: #DD4100;
+  color: white;
+  display: inline-block;
+  height: 28px;
+  width: 60px;
+  text-align: center;
+}
+
+section {
+  width: 22.75vw;
+  height: 40vw;
+  float: left;
+  background: rgba(251, 251, 251, 1);
+  text-align: justify;
+  margin:0 1vw 1vw 0;
+  padding: 1vw;
+}
+
+section h1{
+  text-align: center;
+}
+
+section img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #52662B;
+}
+
+.inside-box {
+  padding: 10px 25px;
+  height: 45%;
+  overflow: scroll;
+}
+
+section footer {
+  padding: 10px 25px;
+}
+
+
+.middle {
+  position: relative;
+  top: 3px;
+  padding: 5px;
+  display: inline-block;
+  border: 1px solid #52662B;
+  padding: 5px;
+  border-radius: 5px;
+  height: 30px;
+  text-align: center;
+  margin-right: 13px;
+}
+.middle i {
+  cursor: pointer;
+}
+
+section p {
+  color: #000;
+}
+
+.show header h2{
+  width: 15vw;
+  float: left;
+  color: #000;
+}
+
+.show div.each{
+  width: 94vw;
+  border-top: 1px solid #52662B;
+}
+.show div.each p{
+  position: relative;
+  text-align: center;
+  width: 15vw;
+  float: left;
+}
+
+input[type='button'].orange {
+  background: #DD4100;
 }

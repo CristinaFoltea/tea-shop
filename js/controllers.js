@@ -123,6 +123,7 @@ app.controller('MainCtrl', ['$scope', function($scope){
           "categories" : ["spring", "warm","winter"]
       }
   ]
+  $scope.show = true
   $scope.update_card = function(id, quantity){
      $scope.addItem = $scope.teas.filter(function(item){
       return item._id === id
@@ -145,10 +146,10 @@ app.controller('MainCtrl', ['$scope', function($scope){
 }])
 app.controller('HomeCtrl', ['$scope', function($scope){
 }])
-
 app.controller('ShowCtrl', ['$scope', function($scope){
-  $scope.change = false
+  $scope.name = 'cristina'
   $scope.edit = true
   $scope.save = false
   $scope.subtotal = 0
+  $scope.change_quantity = true
 }])

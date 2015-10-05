@@ -1,49 +1,39 @@
-<h1><span class="left">My Shopping Bag</span><span class="right">Order Total {{ total()/100 | currency}}</span></h1>
-<table>
-  <tr class="header">
-    <td>
-      Product
-    </td>
-    <td>
-      Quantity
-    </td>
-    <td class="last">
-      SubTotal
-    </td>
-  </tr>
-  <tr ng-repeat="item in shopingcard">
-    <td>
-      <h1>{{item.name}}</h1>
-      <img ng-src="{{item.imageUrl}}" alt="image" />
+<article class="show">
+  <span class="checkout">Order Total {{ total()/100 | currency}}</span>
+    <header class="clearfix">
+        <h2>Quantity</h2>
+        <h2>Product</h2>
+        <h2>SubTotal</h2>
+    </header>
+    <div ng-repeat="item in shopingcard" class="clearfix each">
+        <p>
+          <span ng-show="change_quantity">
+            {{item.quantity}}
+          </span>
+        <select ng-show="!change_quantity" ng-model="item.quantity">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+        </p>
       <p>
-        <span class="bold">Caffeine Scale:</span> {{item.caffeineScale}}
+        <strong>{{item.name}}</strong>
       </p>
-      <p>
-        <span class="bold">Ingredients:</span> {{item.ingredients}}
-      </p>
-      <p>
-        <span class="bold">Rating:</span> {{item.rating}}
-      </p>
-    </td>
-    <td>
-      <span ng-show="!change_quantity" ng-model="change_quantity">{{item.quantity}}</span>
-      <select ng-show="change_quantity" ng-model="item.quantity">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-      </select>
-    </td>
-    <td ng-model="total">
-      {{(item.quantity * item.price)/100 | currency }}
-      <input type="button" value="Edit" ng-show="edit" ng-click="edit=!edit;save=!save;change_quantity=!change_quantity">
-      <input type="button" value="Save" ng-show="save"  ng-click="save=!save;edit=!edit;change_quantity=!change_quantity">
-      <input type="button" value="Remove" ng-click="remove(item._id)">
-    </td>
-  </tr>
-</table>
-<input type="button" value="Place Order">
+        <p>
+          {{(item.quantity * item.price)/100 | currency }}
+        </p >
+        <p>
+          <input ng-if="edit" type="button" value="Edit" ng-click="save=!save;edit=!edit;change_quantity=!change_quantity;">
+          <input ng-if="save" type="button" value="Save" ng-click="save=!save;edit=!edit;change_quantity=!change_quantity;">
+        </p>
+        <p>
+          <input type="button" value="Remove" ng-click="remove(item._id)">
+        </p>
+    </div>
+</article>
+  <input type="button" value="Place Order">
